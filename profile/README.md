@@ -2,11 +2,11 @@
 
 # SovaGrid
 
-Подключайте свои Ubuntu-серверы с телефона или компьютера. SSH, мониторинг, терминал, файлы, Telegram, WireGuard и веб-панель работают с вашим Hub на каждом сервере. Общий сервис аккаунтов не нужен.
+Подключайте свои Ubuntu-серверы с телефона или компьютера. Установите Hub и веб-панель на выбранном вами сервере и добавляйте к ним другие серверы с отдельными Agent. SSH, мониторинг, терминал, файлы, Telegram и WireGuard работают без общего сервиса аккаунтов.
 
 ## Установка
 
-[SovaGrid Blueprint](https://github.com/sovagrid/sovagrid-blueprint) содержит `run.sh`, сценарии Docker Compose и [инструкцию первой установки](https://github.com/sovagrid/sovagrid-blueprint/blob/main/QUICKSTART.md). Для сервера нужен Ubuntu и SSH-доступ администратора. Hub и учётные записи создаются на вашем сервере; общего сервиса аккаунтов нет.
+[SovaGrid Blueprint](https://github.com/sovagrid/sovagrid-blueprint) содержит `run.sh`, сценарии Docker Compose и [инструкцию первой установки](https://github.com/sovagrid/sovagrid-blueprint/blob/main/QUICKSTART.md). Для сервера нужен Ubuntu и SSH-доступ администратора. Hub и учётные записи создаются на выбранном вами сервере; остальные серверы можно добавить через [Connect](https://github.com/sovagrid/sovagrid-connect) по SSH.
 
 [Актуальный серверный пакет 0.10.0-preview](https://github.com/sovagrid/sovagrid-blueprint/releases/tag/v0.10.0-preview) содержит пять проверенных серверных компонентов. SHA-256 архива: `275c5f03c30b1a924b1fcb48067a41f7b76481cd4c249589a7c8b5098db749fb`. Его можно выбрать в графическом установщике либо установить вручную по инструкции. Исходники приложений доступны в репозиториях ниже.
 
