@@ -6,9 +6,15 @@
 
 ## Установка
 
-[SovaGrid Blueprint](https://github.com/sovagrid/sovagrid-blueprint) содержит `run.sh`, сценарии Docker Compose и [инструкцию первой установки](https://github.com/sovagrid/sovagrid-blueprint/blob/main/QUICKSTART.md). Для сервера нужен Ubuntu и SSH-доступ администратора. Hub и учётные записи создаются на выбранном вами сервере; остальные серверы можно добавить через [Connect](https://github.com/sovagrid/sovagrid-connect) по SSH.
+[SovaGrid 1.0.0](https://github.com/sovagrid/sovagrid-blueprint/releases/tag/server-v1.0.0) устанавливает Hub, веб-панель, Agent и зависимости одной командой на пустой Ubuntu:
 
-[Актуальный серверный пакет 0.10.0-preview](https://github.com/sovagrid/sovagrid-blueprint/releases/tag/v0.10.0-preview) содержит пять проверенных серверных компонентов. SHA-256 архива: `275c5f03c30b1a924b1fcb48067a41f7b76481cd4c249589a7c8b5098db749fb`. Его можно выбрать в графическом установщике либо установить вручную по инструкции. Исходники приложений доступны в репозиториях ниже.
+```sh
+bash -o pipefail -c 'curl -fsSL https://raw.githubusercontent.com/sovagrid/sovagrid-blueprint/main/bootstrap/run.sh | sudo bash'
+```
+
+Установщик предложит публичный IPv4 или домен и путь панели. Корень сайта по умолчанию сохраняется. Для SSH-доступа без публичной панели выберите `-`. [Инструкция установки](https://github.com/sovagrid/sovagrid-blueprint/blob/main/QUICKSTART.md) объясняет каждый вариант; контрольные суммы находятся в серверном выпуске.
+
+Без консоли используйте [Connect для macOS, Windows и Linux](https://github.com/sovagrid/sovagrid-connect/releases/tag/v1.0.0): введите SSH-адрес и пользователя, выберите ключ или пароль, подтвердите установку. Дополнительные Ubuntu-серверы подключаются из установленной панели. Есть [Android APK](https://github.com/sovagrid/sovagrid-android/releases/tag/v1.0.0), [приложение macOS и проект для iPhone/iPad](https://github.com/sovagrid/sovagrid-apple/releases/tag/v1.0.0), а также Web/PWA. Для личного iPhone используется Xcode и Apple ID; App Store не требуется.
 
 ## Возможности
 
@@ -16,10 +22,12 @@
 - Свой Hub и аккаунты на каждом Ubuntu-хосте; роли администратора, оператора и наблюдателя, отдельные права на серверы, Telegram-бот с подтверждением команд.
 - Мониторинг системы, процессов, разрешённых systemd-журналов, Docker-контейнеров и HTTP/TCP/DNS-проверок; инциденты и обслуживание.
 - Веб-терминал, разрешённые файлы, управление отдельными службами, системная/светлая/тёмная темы и установка панели как PWA.
-- Собственный WireGuard с клиентскими профилями и маршрутом; существующий AmneziaWG наблюдается отдельно. Управление peer доступно через явно включаемый broker.
-- Закрытые копии данных Hub и управляемого состояния хоста. Панель и Connect показывают план, проверку и ход копирования; при отключении Hub восстановление служб доступно через Connect по SSH.
+- WireGuard и поддерживаемый AmneziaWG: установка, управление клиентами и защищённая выдача профилей через явно включаемый broker. Автоматическая установка AmneziaWG поддерживает amd64.
+- Резервная копия из пяти согласованных файлов, проверка и перенос поддерживаемой полной установки на чистую Ubuntu. Операция продолжается после отключения клиента; Web и Connect позволяют переподключиться к её состоянию.
 
-Применение общих параметров AWG3 доступно только при отсутствии клиентов и после отдельного разрешения администратора. Подписанный канал поиска новых стабильных серверных релизов пока выключен; одноразовое обновление с проверкой пакета и откатом доступно через Connect.
+Подписанные серверные обновления включаются отдельно в настройках: занятый сервер откладывает замену, ошибочный кандидат откатывается. Токен Telegram вводится в панели. Применение общих параметров AWG3 доступно только при отсутствии клиентов и после отдельного разрешения администратора.
+
+Переносимые копии пока не включают изменяемые данные контейнера AmneziaWG и SSH-транспорты внешних Agent; такие Agent после переноса Hub подключаются заново. Полные условия и следующие направления — в [плане развития](https://github.com/sovagrid/sovagrid-blueprint/blob/main/ROADMAP.md).
 
 ## Репозитории
 
@@ -33,6 +41,6 @@
 | Connect и графический установщик | [sovagrid-connect](https://github.com/sovagrid/sovagrid-connect) |
 | WireGuard и AmneziaWG | [sovagrid-vpn](https://github.com/sovagrid/sovagrid-vpn) |
 | Установка, документация, roadmap | [sovagrid-blueprint](https://github.com/sovagrid/sovagrid-blueprint) |
-| Подготовка подписанного канала обновлений | [sovagrid-update-feed](https://github.com/sovagrid/sovagrid-update-feed) |
+| Подписанный канал обновлений | [sovagrid-update-feed](https://github.com/sovagrid/sovagrid-update-feed) |
 
 **Copyright (C) 2026 [Jigokuraku01](https://github.com/Jigokuraku01).** Оригинальный код распространяется по [GNU AGPLv3-only](https://github.com/sovagrid/.github/blob/main/LICENSE) с [условием сохранения авторской подписи](https://github.com/sovagrid/.github/blob/main/ATTRIBUTION.md) по разделу 7(b). Сторонние компоненты сохраняют собственные лицензии.
